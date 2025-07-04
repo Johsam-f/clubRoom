@@ -29,3 +29,20 @@
 ---
 
 ## 🗃️ Project Structure
+
+clubRoom/
+│
+├── app.js # Main application file
+├── .env # Environment variables
+├── package.json # Project metadata and scripts
+│
+├── config/ # DB and Passport configuration
+├── controllers/ # Route logic (auth, messages)
+├── middleware/ # Custom auth middleware
+├── models/ # Database query logic
+├── routes/ # Route definitions
+├── views/ # EJS templates
+│ └── partials/ # Reusable EJS components
+├── public/ # Static assets
+│ └── css/
+└── schema.sql # Optional: SQL structure for DB
