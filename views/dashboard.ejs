@@ -1,6 +1,6 @@
-<%- include('partials/header') %>
+<%- include('partials/loggedInHeader') %>
 
-<div class="min-h-screen bg-gray-100 p-6">
+<div class="min-h-screen bg-gray-700 p-6">
   <div class="max-w-4xl mx-auto bg-white shadow-md rounded-lg p-6">
     <h1 class="text-3xl font-bold mb-4">Welcome, <%= currentUser.first_name %>!</h1>
 
@@ -10,7 +10,7 @@
 
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
       <a href="/profile" class="block bg-blue-600 text-white text-center py-4 rounded-lg shadow hover:bg-blue-700 transition">View Profile</a>
-      <a href="/settings" class="block bg-green-600 text-white text-center py-4 rounded-lg shadow hover:bg-green-700 transition">Account Settings</a>
+      <a href="/home" class="block bg-green-600 text-white text-center py-4 rounded-lg shadow hover:bg-green-700 transition">Home Page</a>
       <a href="/logout" class="block bg-red-600 text-white text-center py-4 rounded-lg shadow hover:bg-red-700 transition">Logout</a>
     </div>
   </div>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Clubroom</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-700 text-gray-800">
+<nav class="bg-gray-800 text-white p-4 shadow-md">
+    <div class="max-w-6xl mx-auto flex justify-between items-center">
+      <div class="text-xl font-bold">
+        <%= currentUser.first_name %>
+      </div>
+      <div class="space-x-4">
+        <a href="/home" class="hover:text-blue-300">home</a>
+        <a href="/dashboard" class="hover:text-blue-300">Dashboard</a>
+        <a href="/logout" class="hover:text-red-400">Logout</a>
+      </div>
+    </div>
+</nav>
+<main class="container mx-auto px-4">
+  

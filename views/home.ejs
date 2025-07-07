@@ -1,0 +1,68 @@
+<%- include('partials/loggedInHeader') %>
+
+<div class="max-w-2xl mx-auto p-4 ">
+  <h1 class="text-3xl font-bold mb-6 text-center text-white">Clubroom Feed</h1>
+
+  <!-- CREATE NEW MESSAGE -->
+  <% if (currentUser) { %>
+    <div class="mb-8 bg-gray-200 shadow rounded p-4">
+      <h2 class="text-lg font-semibold mb-2">Create a new message</h2>
+      <form action="/messages" method="POST" class="space-y-3">
+        <input
+          type="text"
+          name="title"
+          placeholder="Title"
+          required
+          class="w-full border border-gray-300 p-2 rounded"
+        />
+        <textarea
+          name="text"
+          rows="4"
+          placeholder="What's on your mind?"
+          required
+          class="w-full border border-gray-300 p-2 rounded"
+        ></textarea>
+        <div class="text-right">
+          <button
+            type="submit"
+            class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+          >
+            Post
+          </button>
+        </div>
+      </form>
+    </div>
+  <% } %>
+
+  <!-- DISPLAY MESSAGES -->
+  <% if (messages.length === 0) { %>
+    <p class="text-center text-gray-500">No messages yet.</p>
+  <% } else { %>
+    <div class="space-y-6">
+      <% messages.forEach(msg => { %>
+        <div class="bg-gray-200 shadow border rounded p-4">
+          <h3 class="text-xl font-semibold mb-1"><%= msg.title %></h3>
+          <p class="text-gray-800 mb-2"><%= msg.text %></p>
+
+          <% if ((currentUser && currentUser.is_member) || (currentUser && currentUser.is_admin) ) { %>
+            <p class="text-sm text-gray-500">
+              — <%= msg.author_name %> on <%= new Date(msg.created_at).toLocaleString() %>
+            </p>
+          <% } %>
+
+          <% if (currentUser && currentUser.is_admin) { %>
+            <form
+              action="/messages/<%= msg.id %>/delete"
+              method="POST"
+              class="mt-2 text-right"
+            >
+              <button class="text-red-500 hover:underline text-sm">Delete</button>
+            </form>
+          <% } %>
+        </div>
+      <% }) %>
+    </div>
+  <% } %>
+</div>
+
+<%- include('partials/footer') %>

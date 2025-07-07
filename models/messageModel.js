@@ -10,16 +10,28 @@ const createMessage = async ({ title, text, authorId }) => {
 };
 
 const getAllMessages = async () => {
-  const result = await pool.query(
-    `SELECT messages.*, users.first_name, users.last_name
-     FROM messages
-     JOIN users ON messages.author_id = users.id
-     ORDER BY created_at DESC`
-  );
+  const result = await pool.query(`
+    SELECT 
+      messages.id, 
+      messages.title, 
+      messages.text, 
+      messages.created_at, 
+      users.first_name || ' ' || users.last_name AS author_name
+    FROM messages
+    LEFT JOIN users ON messages.author_id = users.id
+    ORDER BY messages.created_at DESC
+  `);
   return result.rows;
 };
 
+
+const deleteMessage = async (id) => {
+  await pool.query(`DELETE FROM messages WHERE id = $1`, [id]);
+};
+
+
 module.exports = {
   createMessage,
-  getAllMessages
+  getAllMessages,
+  deleteMessage
 };
