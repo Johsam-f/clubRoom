@@ -11,7 +11,7 @@ dotenv.config();
 
 const app = express();
 
-// === MIDDLEWARE SETUP ===
+//middleware
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 app.use(express.static(path.join(__dirname, 'public')));
@@ -33,15 +33,14 @@ app.use((req, res, next) => {
   next();
 });
 
-// === ROUTES ===
+//routes
 app.use('/', Router);
 
-// === 404 Handler ===
+// 404 Handler 
 app.use((req, res) => {
   res.status(404).render('404');
 });
 
-// === SERVER START ===
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
