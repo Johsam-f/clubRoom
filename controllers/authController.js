@@ -12,7 +12,6 @@ exports.signupSubmit = async (req, res) => {
     const { first_name, last_name, email, password } = req.body;
 
     if (!errors.isEmpty()) {
-        // Re-render form with validation errors + previous input
         return res.render('signup', {
             errors: errors.array(),
             formData: { first_name, last_name, email }
@@ -32,7 +31,6 @@ exports.signupSubmit = async (req, res) => {
             is_admin
         });
 
-        // Optional: Flash message like "Signup successful! Please log in."
         res.redirect('/login');
     } catch (err) {
         console.error(err);
